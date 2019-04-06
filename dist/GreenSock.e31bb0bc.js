@@ -10992,11 +10992,93 @@ var _EasePack = require("./EasePack.js");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
-},{"./TweenLite.js":"node_modules/gsap/TweenLite.js","./TimelineLite.js":"node_modules/gsap/TimelineLite.js","./TimelineMax.js":"node_modules/gsap/TimelineMax.js","./TweenMax.js":"node_modules/gsap/TweenMax.js","./CSSPlugin.js":"node_modules/gsap/CSSPlugin.js","./AttrPlugin.js":"node_modules/gsap/AttrPlugin.js","./RoundPropsPlugin.js":"node_modules/gsap/RoundPropsPlugin.js","./DirectionalRotationPlugin.js":"node_modules/gsap/DirectionalRotationPlugin.js","./BezierPlugin.js":"node_modules/gsap/BezierPlugin.js","./EasePack.js":"node_modules/gsap/EasePack.js"}],"index.js":[function(require,module,exports) {
+},{"./TweenLite.js":"node_modules/gsap/TweenLite.js","./TimelineLite.js":"node_modules/gsap/TimelineLite.js","./TimelineMax.js":"node_modules/gsap/TimelineMax.js","./TweenMax.js":"node_modules/gsap/TweenMax.js","./CSSPlugin.js":"node_modules/gsap/CSSPlugin.js","./AttrPlugin.js":"node_modules/gsap/AttrPlugin.js","./RoundPropsPlugin.js":"node_modules/gsap/RoundPropsPlugin.js","./DirectionalRotationPlugin.js":"node_modules/gsap/DirectionalRotationPlugin.js","./BezierPlugin.js":"node_modules/gsap/BezierPlugin.js","./EasePack.js":"node_modules/gsap/EasePack.js"}],"src/app.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+// export function Game() => {{
+//     player;
+//     enemies = [];
+//     isCollide() {
+//     const other = document.getElementById("enemy");
+//     const another = document.getElementById("circle");
+//     var object_1 = another.getBoundingClientRect();
+//     var object_2 = other.getBoundingClientRect();
+//     if (object_1.left < object_2.left + object_2.width && object_1.left + object_1.width > object_2.left &&
+//         object_1.top < object_2.top + object_2.height && object_1.top + object_1.height > object_2.top) {
+//         console.log('collisn here')
+//         other.classList.add('none');
+//     }
+// }
+var Game =
+/*#__PURE__*/
+function () {
+  function Game() {
+    _classCallCheck(this, Game);
+
+    this.foo = "ai";
+    console.log('ai');
+  }
+
+  _createClass(Game, [{
+    key: "ok",
+    value: function ok() {
+      console.log('ok');
+    }
+  }, {
+    key: "play",
+    value: function play() {
+      var i = 1;
+      var self = this;
+      var internal = setInterval(function () {
+        /// call your function here
+        self.isCollide();
+        i++;
+
+        if (i === 10) {
+          clearInterval(internal);
+        }
+      });
+    }
+  }, {
+    key: "isCollide",
+    value: function isCollide() {
+      var other = document.getElementById("enemy");
+      var another = document.getElementById("circle");
+      var object_1 = another.getBoundingClientRect();
+      var object_2 = other.getBoundingClientRect();
+
+      if (object_1.left < object_2.left + object_2.width && object_1.left + object_1.width > object_2.left && object_1.top < object_2.top + object_2.height && object_1.top + object_1.height > object_2.top) {
+        console.log('collisn here');
+        other.classList.add('none');
+      }
+    }
+  }]);
+
+  return Game;
+}();
+
+exports.default = Game;
+},{}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _gsap = require("gsap");
 
+var _app = _interopRequireDefault(require("./src/app.js"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var game = new _app.default();
 document.addEventListener("click", function (event) {
   var clientX = event.clientX,
       clientY = event.clientY;
@@ -11006,32 +11088,9 @@ document.addEventListener("click", function (event) {
     y: clientY
   });
 
-  isCollide();
-  var i = 1;
-  var internal = setInterval(function () {
-    /// call your function here
-    isCollide();
-    i++;
-
-    if (i === 10) {
-      clearInterval(internal);
-    }
-  }, 100);
-  clearInterval();
+  game.play();
 });
-
-function isCollide() {
-  var other = document.getElementById("enemy");
-  var another = document.getElementById("circle");
-  var object_1 = another.getBoundingClientRect();
-  var object_2 = other.getBoundingClientRect();
-
-  if (object_1.left < object_2.left + object_2.width && object_1.left + object_1.width > object_2.left && object_1.top < object_2.top + object_2.height && object_1.top + object_1.height > object_2.top) {
-    console.log('collisn here');
-    other.classList.add('none');
-  }
-}
-},{"gsap":"node_modules/gsap/index.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"gsap":"node_modules/gsap/index.js","./src/app.js":"src/app.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
