@@ -1,0 +1,23 @@
+#circle{
+        height: 50px;
+        width: 50px;
+        background-color: green;
+       
+        display: inline-block;
+}
+
+#enemy{
+    position: relative;
+    height:50px;
+    width:50px;
+    display: inline-block;
+    background: red;
+    top:200px;
+    left:40%;
+}
+
+.none {
+    visibility: hidden;
+}
+
+/*# sourceMappingURL=/styles.8986bff4.css.map */
